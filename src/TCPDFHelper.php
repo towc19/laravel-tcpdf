@@ -1,15 +1,13 @@
 <?php
 
-namespace Elibyy\TCPDF;
+namespace towc19\TCPDF;
 
 use Illuminate\Support\Facades\Config;
 
 class TCPDFHelper extends \TCPDF
 {
     protected $headerCallback;
-
     protected $footerCallback;
-
     public function Header()
     {
         if ($this->headerCallback != null && is_callable($this->headerCallback)) {
@@ -21,7 +19,6 @@ class TCPDFHelper extends \TCPDF
             }
         }
     }
-
     public function Footer()
     {
         if ($this->footerCallback != null && is_callable($this->footerCallback)) {
@@ -33,30 +30,24 @@ class TCPDFHelper extends \TCPDF
             }
         }
     }
-
     public function setHeaderCallback($callback)
     {
         $this->headerCallback = $callback;
     }
-
     public function setFooterCallback($callback)
     {
         $this->footerCallback = $callback;
     }
-
     public function addTOC($page = '', $numbersfont = '', $filler = '.', $toc_name = 'TOC', $style = '', $color = array(0, 0, 0))
     {
         // sort bookmarks before generating the TOC
         parent::sortBookmarks();
-
         parent::addTOC($page, $numbersfont, $filler, $toc_name, $style, $color);
     }
-
     public function addHTMLTOC($page = '', $toc_name = 'TOC', $templates = array(), $correct_align = true, $style = '', $color = array(0, 0, 0))
     {
         // sort bookmarks before generating the TOC
         parent::sortBookmarks();
-
         parent::addHTMLTOC($page, $toc_name, $templates, $correct_align, $style, $color);
     }
 }

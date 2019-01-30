@@ -1,6 +1,6 @@
 <?php
 
-namespace Elibyy\TCPDF;
+namespace towc19\TCPDF;
 
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider as LaravelServiceProvider;
@@ -59,8 +59,13 @@ class ServiceProvider extends LaravelServiceProvider
 	{
 		$configPath = dirname(__FILE__) . '/../config/tcpdf.php';
 		$this->mergeConfigFrom($configPath, 'tcpdf');
-		$this->app->singleton('tcpdf', function ($app) {
+
+		$this->app->singleton('towc19tcpdf', function ($app) {
 			return new TCPDF($app);
+		});
+
+		$this->app->singleton('towc19tcpdi', function ($app) {
+			return new TCPDI($app);
 		});
 	}
 
